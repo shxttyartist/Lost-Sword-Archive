@@ -24,6 +24,9 @@ File paths for assets (turn into relative paths)
 **3500 click milestone** - "C:\Users\User\OneDrive\Desktop\lost sword websites\sprites\balan-balan-clicker\png-versions\balan-sprite-3500.png"
 **7000 click milestone** - "C:\Users\User\OneDrive\Desktop\lost sword websites\sprites\balan-balan-clicker\png-versions\balan-sprite-7000.png"
 
+**shop images 'unlocked' and 'locked'**
+"C:\Users\User\OneDrive\Desktop\lost sword websites\sprites\shop\cardboard-box.png"
+
 
 
 **comic pages**
@@ -32,6 +35,13 @@ File paths for assets (turn into relative paths)
 **page 3** - "C:\Users\User\OneDrive\Desktop\lost sword websites\side-quest-balan\first-part\png-versions\lost-sword-comic-page-3.png"
 **page 4** - "C:\Users\User\OneDrive\Desktop\lost sword websites\side-quest-balan\first-part\png-versions\lost-sword-comic-page-4.png"
 **page 5** - "C:\Users\User\OneDrive\Desktop\lost sword websites\side-quest-balan\first-part\png-versions\lost-sword-comic-page-5.png"
+
+**shop assets**
+**locked image**
+sprites/shop/webp-shop-sprites/cardboard-box.webp
+**unlocked image**
+sprites/shop/webp-shop-sprites/cardboard-box-unlocked.webp
+
 
 
 **interactable images audio files**
