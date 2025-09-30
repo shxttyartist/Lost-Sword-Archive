@@ -73,6 +73,7 @@ const happyCoinsEl = document.getElementById('happy-coins');
 const resetBtn = document.getElementById('reset-clicks');
 
 let clicks = Number(localStorage.getItem('balanClicks')) || 0;
+// CHEAT HERE //
 let happyCoins = Number(localStorage.getItem('balanHappyCoins')) || 0;
 
 clickCountEl.textContent = clicks;
@@ -194,12 +195,27 @@ resetBtn.addEventListener('click', () => {
 // =======================
 // Shop System
 // =======================
-const shopItems = [
-  { id: 'item1', price: 10000, lockedSrc: 'sprites/shop/cardboard-box.png', unlockedSrc: 'sprites/placeholders/mini-one.png' },
-  { id: 'item2', price: 10000, lockedSrc: 'sprites/shop/cardboard-box.png', unlockedSrc: 'sprites/placeholders/mini-two.png' },
-  { id: 'item3', price: 10000, lockedSrc: 'sprites/shop/cardboard-box.png', unlockedSrc: 'sprites/placeholders/mini-three.png' },
-  { id: 'item4', price: 10000, lockedSrc: 'sprites/shop/cardboard-box.png', unlockedSrc: 'sprites/placeholders/mini-four.png' }
+// Define possible IDs per slot - copilot suggestion
+const shopSlots = [
+  { ids: ['item1A', 'item1B'] },
+  { ids: ['item2A', 'item2B'] },
+  { ids: ['item3A', 'item3B'] },
+  { ids: ['item4A', 'item4B'] }
 ];
+
+const shopItems = [
+  { id: 'item1A', price: 5000, lockedSrc: 'sprites/shop/webp-shop-sprites/cardboard-box.webp', unlockedSrc: 'sprites/shop/webp-shop-sprites/cardboard-box-unlocked.webp', fullSrc: 'sprites/shop/sellables/the-silk-road-demon.png' }, 
+  { id: 'item2A', price: 5000, lockedSrc: 'sprites/shop/webp-shop-sprites/cardboard-box.webp', unlockedSrc: 'sprites/shop/webp-shop-sprites/cardboard-box-unlocked.webp', fullSrc: 'sprites/shop/sellables/the-silk-road-demon.png' },
+  { id: 'item3A', price: 5000, lockedSrc: 'sprites/shop/webp-shop-sprites/cardboard-box.webp', unlockedSrc: 'sprites/shop/webp-shop-sprites/cardboard-box-unlocked.webp', fullSrc: 'sprites/shop/sellables/the-silk-road-demon.png' },
+  { id: 'item4A', price: 5000, lockedSrc: 'sprites/shop/webp-shop-sprites/cardboard-box.webp', unlockedSrc: 'sprites/shop/webp-shop-sprites/cardboard-box-unlocked.webp', fullSrc: 'sprites/shop/sellables/the-silk-road-demon.png' }
+];
+
+// Clean up previous week's owned item IDs - copilot suggestion
+shopSlots.forEach((slot, idx) => {
+  const currentID = shopItems[idx].id;
+  const otherID = slot.ids.find(id => id !== currentID);
+  localStorage.removeItem(otherID);
+});
 
 const shopLeftContainer = document.getElementById('shop-left-container');
 const shopRightContainer = document.getElementById('shop-right-container');
@@ -209,8 +225,8 @@ function renderShop(items, container) {
   items.forEach(item => {
     const owned = localStorage.getItem(item.id) === 'owned';
     const imgHTML = owned
-      ? `<a href="${item.unlockedSrc.replace('mini','full')}" download><img id="${item.id}-img" src="${item.unlockedSrc}"></a>`
-      : `<img id="${item.id}-img" src="${item.lockedSrc}">`;
+		? `<a href="${item.fullSrc}" download><img id="${item.id}-img" src="${item.unlockedSrc}"></a>`
+		: `<img id="${item.id}-img" src="${item.lockedSrc}">`;
 
 		const itemDiv = document.createElement('div');
 		itemDiv.classList.add('shop-item');
@@ -218,9 +234,8 @@ function renderShop(items, container) {
 		itemDiv.innerHTML = `
 			<div class="shop-image">
 			${imgHTML}
-			<div class="lock-overlay" style="display:${owned ? 'none' : 'block'}">🔒</div>
 		</div>
-		<button class="buy-btn" ${owned ? 'disabled' : ''}>${owned ? 'Owned ✅' : `Buy for ${item.price} 🪙`}</button>
+		<button class="buy-btn" ${owned ? 'disabled' : ''}>${owned ? 'Owned ✅' : `Buy for ${item.price} `}</button>
 	`;
 	container.appendChild(itemDiv);
 
