@@ -31,12 +31,15 @@ a {
   position: sticky;
   top: 0;
   background: var(--bg);
+   z-index: 100;
 }
 
 .topbar .brand {
   font-size: 1.5rem;
   font-weight: 500;
 }
+
+
 
 .tabs {
   display: flex;
@@ -87,6 +90,7 @@ main {
   image-rendering: auto;
   -webkit-user-drag: none;
   user-select: none;
+  touch-action: manipulation;
 }
 
 .balan-label {
@@ -211,16 +215,6 @@ main {
   height: auto;
   border-radius: 10px;
   object-fit: contain;
-}
-
-.lock-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-  color: white;
-  text-shadow: 2px 2px 5px black;
 }
 
 .buy-btn {
